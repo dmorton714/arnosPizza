@@ -1,3 +1,6 @@
+import { fileURLToPath } from 'node:url'
+import { menuHandler, publishHandler } from './editor/menu-api'
+
 const baseURL = process.env.NUXT_APP_BASE_URL || '/'
 
 // Static site: `npm run build` runs `nuxt generate` -> .output/public
@@ -36,4 +39,17 @@ export default defineNuxtConfig({
   },
   // autoSubfolderIndex:false writes menu.html (not menu/index.html) so GitHub Pages serves /menu with no redirect
   nitro: { prerender: { crawlLinks: true, routes: ['/'], autoSubfolderIndex: false } },
+
+  // Price editor at /admin/prices: only while running `npm run dev`, never in the built site.
+  devServerHandlers: [
+    { route: '/api/_editor/menu', handler: menuHandler },
+    { route: '/api/_editor/publish', handler: publishHandler },
+  ],
+  $development: {
+    hooks: {
+      'pages:extend'(pages) {
+        pages.push({ name: 'price-editor', path: '/admin/prices', file: fileURLToPath(new URL('./editor/PriceEditor.vue', import.meta.url)) })
+      },
+    },
+  },
 })

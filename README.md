@@ -4,14 +4,16 @@ Static site for Arno Pizza, 3912 Bardstown Road, Louisville, KY. Built with Nuxt
 
 ## Updating prices and menu items
 
-Everything on the menu lives in **`data/menu.ts`**. Change a number, save, rebuild.
+1. `npm run dev`
+2. Open **http://localhost:3000/admin/prices**
+3. Change prices, then **Save** (updates the site on your computer) or **Save & publish**
+   (commits `data/menu.json`, pushes to GitHub, and the live site updates in ~2 minutes).
 
-```ts
-{ name: 'Deluxe Pizza', desc: '...', prices: [9.99, 13.99, 18.99] },
-//                                              Sm 10"  Md 12"  Lg 16"
-```
+The editor only exists while running locally. It is not part of the published site.
 
-Hours, phone and address are in **`data/site.ts`**. Photos are in `public/` and listed in `data/media.ts`.
+The menu data is in `data/menu.json` if you'd rather edit it by hand: `prices` lines up with the
+section's `sizes`, left to right. Hours, phone and address are in `data/site.ts`. Photos are in
+`public/` and listed in `data/media.ts`. Reviews are in `data/reviews.ts`.
 
 The original menu photos used to build the menu are in `menu-photos/` (not published).
 
