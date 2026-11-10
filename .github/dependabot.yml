@@ -1,0 +1,18 @@
+# GitHub opens a pull request when npm packages or the deploy workflow's actions have updates.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      nuxt:
+        patterns: ['nuxt', '@nuxt/*', '@nuxtjs/*', 'nuxt-*']
+    ignore:
+      # TypeScript 7 is a major rewrite; Nuxt tooling isn't ready for it yet
+      - dependency-name: typescript
+        update-types: ['version-update:semver-major']
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

@@ -1,0 +1,117 @@
+// ============================================================================
+//  THE MENU — edit prices and items here. Every page updates on the next build.
+//
+//  • Prices are plain numbers in dollars:  9.99  shows as  $9.99
+//  • `prices` lines up with the section's `sizes`, left to right.
+//      sizes:  ['Sm 10"', 'Md 12"', 'Lg 16"']
+//      prices: [9.99,      13.99,    18.99]
+//  • A section with one size (sides) has one price per item.
+//  • To add an item, copy a line and change it. To remove one, delete the line.
+//
+//  Lines marked  // CHECK  were hard to read on the printed menu or came from
+//  an older printing. Confirm them, then delete the comment.
+// ============================================================================
+
+export interface MenuItem {
+  name: string
+  desc?: string
+  prices: number[]
+}
+
+export interface MenuSection {
+  id: string // used in links, e.g. /menu#pizza
+  title: string
+  blurb?: string
+  image?: { src: string; alt: string } // photo in /public shown at the top of the section
+  sizes: string[]
+  items: MenuItem[]
+  notes?: string[]
+}
+
+export const menu: MenuSection[] = [
+  {
+    id: 'pizza',
+    title: 'Pizza & Toppings',
+    blurb: 'Start with cheese and build it the way you like it.',
+    image: { src: '/cheese.jpg', alt: 'Large cheese pizza in a takeout box' },
+    sizes: ['Sm 10"', 'Md 12"', 'Lg 16"'],
+    items: [
+      { name: 'Cheese Pizza', prices: [6.99, 8.99, 13.99] },
+      { name: 'Extra Topping', desc: 'Each', prices: [1.0, 1.5, 2.0] },
+      { name: 'Specialty Topping', desc: 'Each', prices: [1.5, 2.0, 3.0] },
+    ],
+    notes: [
+      'Toppings: Pepperoni, Ham, Chicken, Bacon, Mushrooms, Beef, Green Peppers, Onions, Black Olives, Green Olives, Fresh Spinach, Jalapeño Peppers, Banana Peppers, Pineapple, Tomato',
+      'Specialty Toppings: Steak, Sausage, Salami, Extra Cheese, Feta Cheese',
+      'Fresh garlic upon request.',
+    ],
+  },
+  {
+    id: 'specialty',
+    title: 'Specialty Pizza',
+    image: { src: '/pizza1.jpg', alt: 'Pizza topped with banana peppers, jalapeños and sausage' },
+    sizes: ['Sm 10"', 'Md 12"', 'Lg 16"'],
+    items: [
+      { name: 'Ultimate Pizza', desc: 'Pepperoni, Sausage, Ham, Bacon, Green Peppers, Onions, Mushrooms & Black Olives', prices: [10.99, 14.99, 19.99] },
+      { name: 'Deluxe Pizza', desc: 'Pepperoni, Sausage, Green Peppers, Onions, Mushrooms & Black Olives', prices: [9.99, 13.99, 18.99] },
+      { name: 'Veggie Pizza', desc: 'Mushroom, Tomato, Green Peppers, Onions, Green & Black Olives', prices: [9.99, 13.99, 18.99] },
+      { name: 'Meat Pizza', desc: 'Pepperoni, Ham, Beef, Sausage & Bacon', prices: [10.99, 14.99, 19.99] },
+      { name: 'Chicken Alfredo Pizza', desc: 'Alfredo Sauce, Chicken & Fresh Spinach', prices: [9.99, 13.99, 18.99] },
+      { name: 'BBQ Chicken Pizza', desc: 'BBQ Sauce, Chicken, Bacon & Onions', prices: [9.99, 13.99, 18.99] },
+      { name: 'White Pizza', desc: 'Ricotta, Mozzarella, Tomato & Fresh Garlic', prices: [8.99, 11.99, 16.99] },
+      { name: 'Steak Pizza', desc: 'Steak, Mushrooms, Green Peppers & Onions', prices: [9.99, 13.99, 18.99] },
+      { name: 'Buffalo Chicken Pizza', desc: 'Chicken, Mushrooms, Bacon & Buffalo Sauce', prices: [9.99, 13.99, 18.99] },
+    ],
+  },
+  {
+    id: 'subs',
+    title: 'Subs & Sandwiches',
+    blurb: 'Every sandwich comes as a sub or on fresh flatbread.',
+    image: { src: '/calzone.jpg', alt: 'Flatbread sandwich with meat, cheese, tomato and lettuce' },
+    sizes: ['Sub', 'Flatbread'],
+    // CHECK: sub prices are from the older printed menu
+    items: [
+      { name: 'Ultimate Club', desc: 'Turkey, Ham, Bacon, Lettuce, Onions, Tomato & Cheese', prices: [6.99, 7.99] },
+      { name: 'Cuban', desc: 'Ham, Turkey, Salami, Cheese, Mustard & Pickles', prices: [7.49, 8.49] },
+      { name: 'BLT', desc: 'Bacon, Lettuce & Tomato', prices: [6.49, 7.49] },
+      { name: 'Ham & Turkey', desc: 'Ham, Turkey, Cheese, Lettuce, Tomato & Onions', prices: [6.49, 6.99] },
+      { name: 'Italian', desc: 'Salami, Ham, Lettuce, Tomato, Onions, Cheese & Black Olives', prices: [6.99, 7.99] },
+      { name: 'Philly Steak', desc: 'Steak, Onions, Mushrooms, Green Peppers & Cheese', prices: [6.99, 7.99] },
+      { name: 'Chicken Philly', desc: 'Chicken, Onions, Mushrooms & Cheese', prices: [6.99, 7.99] },
+      { name: 'Fresh Flatbread Sandwich', desc: 'Pastrami, Turkey, Lettuce, Tomato & Cheese', prices: [6.49, 6.99] },
+    ],
+  },
+  {
+    id: 'sides',
+    title: 'Appetizers & Sides',
+    image: { src: '/breadsticks.jpg', alt: 'Oven baked bread sticks with marinara sauce' },
+    sizes: ['Price'],
+    items: [
+      { name: 'Chicken Wings (6)', desc: 'Hot, BBQ or Mild', prices: [6.0] }, // CHECK: older menu price
+      { name: 'Chicken Wings (12)', desc: 'Hot, BBQ or Mild', prices: [11.0] },
+      { name: 'Chicken Nuggets', prices: [4.99] }, // CHECK: older menu price
+      { name: 'Cheesy Bread', prices: [5.99] }, // CHECK: older menu price
+      { name: 'Oven Baked Bread Sticks', prices: [3.99] }, // CHECK: older menu price
+      { name: 'Calzone Turnover', prices: [5.99] }, // CHECK: older menu price
+      { name: 'Extra side of sauce, topping or dressing', prices: [1.0] },
+    ],
+  },
+  {
+    id: 'salads',
+    title: 'Salads',
+    image: { src: '/salad.jpg', alt: 'Greek salad with feta, tomato, cucumber and kalamata olives' },
+    sizes: ['Small', 'Large'],
+    // CHECK: small prices are from the older menu; large prices are from the current one
+    items: [
+      { name: 'Antipasto Salad', desc: 'Lettuce, Tomato, Onion, Black Olives, Green Peppers, Ham, Salami, Pepperoni & Mozzarella Cheese', prices: [4.99, 9.99] },
+      { name: 'Chef Salad', desc: 'Lettuce, Tomato, Onions, Green Peppers, Ham, Salami & Cheese', prices: [4.99, 9.99] },
+      { name: 'Greek Salad', desc: 'Green Peppers, Cucumbers, Red Onions, Kalamata Olives, Pepperoncini Peppers, Feta Cheese & Tomato', prices: [5.99, 9.99] },
+      { name: 'Grilled Chicken Salad', desc: 'Lettuce, Tomato, Cucumbers, Red Onions, Kalamata Olives, Pepperoncini Peppers & Cheese', prices: [5.99, 9.99] },
+      { name: 'Tossed Salad', desc: 'Lettuce, Tomato & Onions', prices: [2.99, 7.49] },
+    ],
+    // CHECK: dressing list was cut off in the menu photo
+    notes: ['Dressings include Balsamic Vinaigrette, Greek and Red Wine Vinegar. Ask us for the full list.'],
+  },
+]
+
+export const money = (n: number) => `$${n.toFixed(2)}`
