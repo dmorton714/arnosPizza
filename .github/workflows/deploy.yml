@@ -29,7 +29,7 @@ jobs:
 
       # Tells us the live URL: a custom domain, or https://<user>.github.io/<repo>
       - id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - run: npm ci
 
